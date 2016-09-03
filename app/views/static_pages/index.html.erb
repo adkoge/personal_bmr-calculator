@@ -1,80 +1,64 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <script src="jquery-3.1.0.js"></script>
-
-  <title>BMR Calculator</title>
-</head>
-
-  <body>
-  <div class="container">
-    <div class="jumbotron">
-      <h2>BMR - Basal Metabolic Rate</h2>
-      <br />
-      <button id="showButton" onclick="showDescription()" class="btn btn-lg btn-primary btn-block">What is BMR? (click me)</button>
-      <div class = "bmrInfo">
-      <hr />
-      <p>
-        Your BMR is the amount of calories you burn just to be you.
-      </p>
-       <p>That means your
-        profile (i.e. height, age, weight, gender).
-      </p>
-      <p>For example, someone who is 200 pounds will by default burn more calories than someone who weighs 150 pounds.
-      </p>
-      </p>
-      <p>
-        Once you find your BMR, you then need to factor in your exercise levels.
-      </p>
-      <p>
-        Once that is factored in, you will know how many calories you need to consume
-        to maintain, lose, or gain lean muscle.
-      </p>
-      <p>The calculator below will help you figure our your numbers</p>
-      <br /><br />
-    </div>
+<div class="container">
+  <div class="jumbotron">
+    <h2>BMR - Basal Metabolic Rate</h2>
+    <br />
+    <button id="showButton" onclick="showDescription()" class="btn btn-lg btn-primary btn-block">What is BMR? (click me)</button>
+    <div class = "bmrInfo">
+    <hr />
+    <p>
+      UPDATE: Your BMR is the amount of calories you burn just to be you.
+    </p>
+     <p>That means your
+      profile (i.e. height, age, weight, gender).
+    </p>
+    <p>For example, someone who is 200 pounds will, by default, burn more calories than someone who weighs 150 pounds.
+    </p>
+    </p>
+    <p>
+      Once you find your BMR, you then need to factor in your exercise levels.
+    </p>
+    <p>
+      Once that is factored in, you will know how many calories you need to consume
+      to maintain, lose, or gain weight.
+    </p>
+    <p>The calculator below will help you figure our your numbers</p>
     <br /><br />
-    <div class="calculation">
-      <form action="" id="profileForm">
-        <fieldset>
-          <legend>ENTER YOUR INFO BELOW</legend>
-          <label>Height (ft):</label>
-          <input id="heightFeetInput" type="number" name="heightfeet" required="true" onchange="calculateBMR()" value="6">
-          <label>(in):</label>
-          <input id="heightInchesInput" type="number" name="heightinches" required="true" onchange="calculateBMR()" value="2"> <br /><br />
-          <label>Age:</label>
-          <input id="ageInput" type="number" name="age" min="0" max="120" required="true" onchange="calculateBMR()" value="28"></br></br>
-          <label>Weight:</label>
-          <input id="weightlbsInput" type="number" name="weightlbs" required="true" onchange="calculateBMR()" value="220"></br></br>
-          <label>Select Gender:</label>
-          <br />
-          <input id="gender" type="radio" name="gender" value="male" checked> Male<br>
-          <input id="gender" type="radio" name="gender" value="female"> Female<br>
-          <input id="gender" type="radio" name="gender" value="other"> Other
-          <br /><br />
-          <label>How many hours of exercise do you get a week?</label>
-          <br />
-          <form id="exerciseForm">
-          <input  type="radio" name="selectedexercise" value="1.2" checked> 1-3<br>
-          <input  type="radio" name="selectedexercise" value="1.35"> 4-6<br>
-          <input  type="radio" name="selectedexercise" value="1.5" > 6+
-        </form>
-          <br /><br /><br />
-          <button id="calculate" class="btn-lg btn-success" type="button" onclick="displayBMR()">Calculate BMR</button>
-          <br /><br />
-          <div id="displayBMR"></div>
-          <div id="displayWeightLoss"></div>
-          <div id="displayLeanGain"></div>
-        </fieldset>
+  </div>
+  <br /><br />
+  <div class="calculation">
+    <form action="" id="profileForm">
+      <fieldset>
+        <legend>ENTER YOUR INFO BELOW</legend>
+        <label>Height (ft):</label>
+        <input id="heightFeetInput" type="number" name="heightfeet" required="true" onchange="calculateBMR()" value="5">
+        <label>(in):</label>
+        <input id="heightInchesInput" type="number" name="heightinches" required="true" onchange="calculateBMR()" value="7"> <br /><br />
+        <label>Age:</label>
+        <input id="ageInput" type="number" name="age" min="0" max="120" required="true" onchange="calculateBMR()" value="28"></br></br>
+        <label>Weight:</label>
+        <input id="weightlbsInput" type="number" name="weightlbs" required="true" onchange="calculateBMR()" value="170"></br></br>
+        <label>Select Gender:</label>
+        <br />
+        <input id="gender" type="radio" name="gender" value="male" checked> Male<br>
+        <input id="gender" type="radio" name="gender" value="female"> Female<br>
+        <input id="gender" type="radio" name="gender" value="other"> Other
+        <br /><br />
+        <label>How many hours of exercise do you get a week?</label>
+        <br />
+        <form id="exerciseForm">
+        <input  type="radio" name="selectedexercise" value="1.2" checked> 1-3<br>
+        <input  type="radio" name="selectedexercise" value="1.35"> 4-6<br>
+        <input  type="radio" name="selectedexercise" value="1.5" > 6+
       </form>
-      </div>
+        <br /><br /><br />
+        <button id="calculate" class="btn-lg btn-success" type="button" onclick="displayBMR()">Calculate BMR</button>
+        <button id="clearBMR" class="btn-lg btn-warning" type="button">Clear</button>
+        <br /><br />
+        <div id="displayBMR"></div>
+        <div id="displayWeightLoss"></div>
+        <div id="displayLeanGain"></div>
+      </fieldset>
+    </form>
     </div>
-    </div>
-  <script type="text/javascript" src="bmr.js"></script>
-</body>
-</html>
+  </div>
+</div>

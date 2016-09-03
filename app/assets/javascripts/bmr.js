@@ -73,3 +73,11 @@ $(document).ready(function(){
     var result = bmrWithExercise() + 500;
     return "gain lean muscle tissue is " + result.value;
   }
+
+  $("#clearBMR").click(function(){
+    $("#displayBMR").html("");
+    $("#heightFeetInput").val("");
+    $("#heightInchesInput").val("");
+    $("#ageInput").val("");
+    $("#weightlbsInput").val("");
+  });
