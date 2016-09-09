@@ -82,8 +82,13 @@ $(document).ready(function(){
   }
 
   var hideBMR = function() {
+    $("#heightFeetInput").val("");
+    $("#heightInchesInput").val("");
+    $("#ageInput").val("");
+    $("#weightlbsInput").val("");
     $("#printBaselineBMR").html("");
     $("#printExerciseBMR").html("");
     $("#printLoseWeight").html("");
     $("#printGainWeight").html("");
+    $("#heightFeetInput").focus();
   }
