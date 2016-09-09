@@ -34,8 +34,8 @@ $(document).ready(function(){
     age = +document.getElementById('ageInput').value;
     weightlbs = +document.getElementById('weightlbsInput').value;
 
-    var maleBMR = (66 + (6.23 * weightlbs) + (12.7 * totalInches()) - (6.8 * age)).toFixed(2);
-    var femaleBMR = (655 + (4.35 * weightlbs) + (4.7 * totalInches()) - (4.7 * age)).toFixed(2);
+    var maleBMR = parseFloat((66 + (6.23 * weightlbs) + (12.7 * totalInches()) - (6.8 * age))).toFixed(2);
+    var femaleBMR = parseFloat((655 + (4.35 * weightlbs) + (4.7 * totalInches()) - (4.7 * age))).toFixed(2);
 
     if (getGender() == "male") {
       return maleBMR;
@@ -46,7 +46,7 @@ $(document).ready(function(){
   var bmrWithExercise = function() {
     var bmr = calculateBMR();
 
-    result = bmr * getHoursOfExerciseValue();
+    result = parseFloat((bmr * getHoursOfExerciseValue()).toFixed(2));
 
     return result;
   }
