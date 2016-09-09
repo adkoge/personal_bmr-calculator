@@ -1,11 +1,12 @@
 $(document).ready(function(){
     $(".bmrInfo").hide();
+    $("#displayCalculations").hide();
 })
 
-  var heightFeet = +document.getElementById('heightFeetInput').value;
-  var heightInches = +document.getElementById('heightInchesInput').value;
-  var age = +document.getElementById('ageInput').value;
-  var weightlbs = +document.getElementById('weightlbsInput').value;
+  var heightFeet;
+  var heightInches;
+  var age;
+  var weightlbs;
 
   var exercise_values = new Array();
     exercise_values["1-3"]=1.2;
@@ -14,7 +15,6 @@ $(document).ready(function(){
 
   var getHoursOfExerciseValue = function(){
     var selectedHours = document.querySelector('input[name="selectedexercise"]:checked').value;
-    console.log(parseFloat(selectedHours));
     return parseFloat(selectedHours);
 }
 
@@ -29,13 +29,18 @@ $(document).ready(function(){
   }
 
   var calculateBMR = function() {
+    heightFeet = +document.getElementById('heightFeetInput').value;
+    heightInches = +document.getElementById('heightInchesInput').value;
+    age = +document.getElementById('ageInput').value;
     weightlbs = +document.getElementById('weightlbsInput').value;
 
-    console.log("weight " + typeof weightlbs + " " + weightlbs);
-    console.log("total inches " + typeof totalInches() + " " + totalInches());
-    console.log("age " + typeof age + " " + age);
-    var womenBMR = (655 + (4.35 * weightlbs) + (4.7 * totalInches()) + (4.7 * age));
-    return womenBMR;
+    var maleBMR = (66 + (6.23 * weightlbs) + (12.7 * totalInches()) - (6.8 * age)).toFixed(2);
+    var femaleBMR = (655 + (4.35 * weightlbs) + (4.7 * totalInches()) - (4.7 * age)).toFixed(2);
+
+    if (getGender() == "male") {
+      return maleBMR;
+    }
+    return femaleBMR;
   }
 
   var bmrWithExercise = function() {
@@ -56,28 +61,29 @@ $(document).ready(function(){
   }
 
   var displayBMR = function() {
+    $("#displayCalculations").show("slow");
     var total = calculateBMR();
+    var totalWithExercise = bmrWithExercise();
+    var loseWeight = (totalWithExercise - 500).toFixed(2);
+    var gainWeight = (totalWithExercise + 500).toFixed(2);
 
-    var divobj = document.getElementById('displayBMR');
-    divobj.style.display='block';
-    divobj.innerHTML = "Your baseline BMR is " + total + "<br />" + "Your BMR factoring in exercise is " +
-    bmrWithExercise();
+    var printBaseline = document.getElementById('printBaselineBMR');
+    printBaseline.innerHTML = total;
+
+    var printExercise = document.getElementById('printExerciseBMR');
+    printExercise.innerHTML = totalWithExercise;
+
+    var printLose = document.getElementById('printLoseWeight');
+    printLose.innerHTML = loseWeight;
+
+
+    var printGain = document.getElementById('printGainWeight');
+    printGain.innerHTML = gainWeight;
   }
 
-  var loseWeightCalc = function() {
-    var result = bmrWithExercise() - 500;
-    return "lose weight is" + result.value;
+  var hideBMR = function() {
+    $("#printBaselineBMR").html("");
+    $("#printExerciseBMR").html("");
+    $("#printLoseWeight").html("");
+    $("#printGainWeight").html("");
   }
-
-  var gainWeightCalc = function() {
-    var result = bmrWithExercise() + 500;
-    return "gain lean muscle tissue is " + result.value;
-  }
-
-  $("#clearBMR").click(function(){
-    $("#displayBMR").html("");
-    $("#heightFeetInput").val("");
-    $("#heightInchesInput").val("");
-    $("#ageInput").val("");
-    $("#weightlbsInput").val("");
-  });

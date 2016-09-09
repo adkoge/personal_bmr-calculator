@@ -6,7 +6,7 @@
     <div class = "bmrInfo">
     <hr />
     <p>
-      UPDATE: Your BMR is the amount of calories you burn just to be you.
+      Your BMR is the amount of calories you burn just to be you.
     </p>
      <p>That means your
       profile (i.e. height, age, weight, gender).
@@ -30,33 +30,39 @@
       <fieldset>
         <legend>ENTER YOUR INFO BELOW</legend>
         <label>Height (ft):</label>
-        <input id="heightFeetInput" type="number" name="heightfeet" required="true" onchange="calculateBMR()" value="5">
+        <input id="heightFeetInput" type="number" name="heightfeet" required="true" onchange="displayBMR()" autofocus>
         <label>(in):</label>
-        <input id="heightInchesInput" type="number" name="heightinches" required="true" onchange="calculateBMR()" value="7"> <br /><br />
+        <input id="heightInchesInput" type="number" name="heightinches" required="true" onchange="displayBMR()"> <br /><br />
         <label>Age:</label>
-        <input id="ageInput" type="number" name="age" min="0" max="120" required="true" onchange="calculateBMR()" value="28"></br></br>
+        <input id="ageInput" type="number" name="age" min="0" max="120" required="true" onchange="displayBMR()"></br></br>
         <label>Weight:</label>
-        <input id="weightlbsInput" type="number" name="weightlbs" required="true" onchange="calculateBMR()" value="170"></br></br>
+        <input id="weightlbsInput" type="number" name="weightlbs" required="true" onchange="displayBMR()"></br></br>
         <label>Select Gender:</label>
         <br />
-        <input id="gender" type="radio" name="gender" value="male" checked> Male<br>
-        <input id="gender" type="radio" name="gender" value="female"> Female<br>
-        <input id="gender" type="radio" name="gender" value="other"> Other
+        <input id="gender" type="radio" name="gender" value="male" checked onchange="displayBMR()"> Male<br>
+        <input id="gender" type="radio" name="gender" value="female" onchange="displayBMR()"> Female<br>
         <br /><br />
         <label>How many hours of exercise do you get a week?</label>
         <br />
         <form id="exerciseForm">
-        <input  type="radio" name="selectedexercise" value="1.2" checked> 1-3<br>
-        <input  type="radio" name="selectedexercise" value="1.35"> 4-6<br>
-        <input  type="radio" name="selectedexercise" value="1.5" > 6+
+        <input  type="radio" name="selectedexercise" value="1.2" checked onchange="displayBMR()"> 1-3<br>
+        <input  type="radio" name="selectedexercise" value="1.35" onchange="displayBMR()"> 4-6<br>
+        <input  type="radio" name="selectedexercise" value="1.5" onchange="displayBMR()"> 6+
       </form>
         <br /><br /><br />
         <button id="calculate" class="btn-lg btn-success" type="button" onclick="displayBMR()">Calculate BMR</button>
-        <button id="clearBMR" class="btn-lg btn-warning" type="button">Clear</button>
+        <button id="clear" class="btn-lg btn-warning" type="button" onclick="hideBMR()">Clear</button>
         <br /><br />
-        <div id="displayBMR"></div>
-        <div id="displayWeightLoss"></div>
-        <div id="displayLeanGain"></div>
+      <div id="displayCalculations">
+        <h3>Your BMR is:</h3>
+          <p id="printBaselineBMR"></p>
+        <h3>BMR with exercise is:</h3>
+          <p id="printExerciseBMR"></p>
+        <h3>Daily Calories to lose 1 pound of fat per week:</h3>
+          <p id="printLoseWeight"></p>
+        <h3>Daily Calories to gain 1 pound of lean muscle per week:</h3>
+          <p id="printGainWeight"></p>
+      </div>
       </fieldset>
     </form>
     </div>
